@@ -88,4 +88,18 @@ public class CategoryController {
         model.addAttribute("categories", categoryService.getAll());
         return "categories/list";
     }
+
+    /**
+     * After clicking "save" in the edit Category Form
+     * details will be directed here
+     * Saves updates existing Category Object in DB
+     * @param id            category Id
+     * @param category      field values of edit Form
+     * @return
+     */
+    @PostMapping(path = "/category/{id}")
+    public String updateCategory(@PathVariable("id") long id, Category category) {
+        categoryService.update(id, category);
+        return "redirect:/categories";    }
+
 }
