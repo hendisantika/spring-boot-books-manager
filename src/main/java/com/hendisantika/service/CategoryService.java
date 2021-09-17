@@ -68,4 +68,17 @@ public class CategoryService {
         categoryRepository.save(categoryDetails);
         return categoryDetails.getId();
     }
+
+    /**
+     * Updates a Category with
+     *
+     * @param catId           ID of Category
+     * @param categoryDetails Category details from EDIT FORM
+     */
+    public void update(Long catId, Category categoryDetails) {
+        Category currentCat = findById(catId);
+        currentCat.setName(categoryDetails.getName());
+
+        categoryRepository.save(currentCat);
+    }
 }
