@@ -66,4 +66,24 @@ public class BookService {
         bookRepository.save(currentBook);
     }
 
+    /**
+     * delete a Book from DB
+     *
+     * @param bookId ID of Book
+     */
+    public void delete(Long bookId) {
+        bookRepository.deleteById(bookId);
+    }
+
+    /**
+     * creates and inserts a new Book in DB
+     *
+     * @param bookDetails Book details from NEW Book FROM
+     * @return id of new Book
+     */
+    public Long create(Book bookDetails) {
+        bookRepository.save(bookDetails);
+        return bookDetails.getId();
+    }
+
 }
