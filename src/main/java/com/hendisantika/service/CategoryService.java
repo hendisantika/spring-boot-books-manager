@@ -49,4 +49,12 @@ public class CategoryService {
         return categoryOptional.get();
     }
 
+    /**
+     * delete a Category from DB
+     *
+     * @param catId ID of Category
+     */
+    public void delete(Long catId) {
+        categoryRepository.deleteById(catId);
+    }
 }
