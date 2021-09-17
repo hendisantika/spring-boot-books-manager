@@ -68,4 +68,19 @@ public class BookController {
         long id = bookService.create(book);
         return "redirect:/books";
     }
+
+    /**
+     * Edit Form
+     * @param id        book Id
+     * @param model     book object
+     * @return          template for editing a book
+     */
+    @GetMapping("/book/{id}")
+    public String editBookForm(@PathVariable("id") long id, Model model) {
+        Book book = bookService.findById(id);
+        Set<Category> categories = categoryService.getAll();
+        model.addAttribute("allCategories", categories);
+        model.addAttribute("book", book);
+        return "books/edit";
+    }
 }
