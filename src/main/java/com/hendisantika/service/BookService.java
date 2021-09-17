@@ -49,4 +49,21 @@ public class BookService {
         return bookOptional.get();
     }
 
+    /**
+     * Updates a Book with
+     *
+     * @param bookId      ID of Book
+     * @param bookDetails Book details from EDIT FORM
+     */
+    public void update(Long bookId, Book bookDetails) {
+        Book currentBook = findById(bookId);
+        currentBook.setTitle(bookDetails.getTitle());
+        currentBook.setAuthor(bookDetails.getAuthor());
+        currentBook.setCategories(bookDetails.getCategories());
+        currentBook.setDescription(bookDetails.getDescription());
+        currentBook.setDateField(bookDetails.getDateField());
+
+        bookRepository.save(currentBook);
+    }
+
 }
