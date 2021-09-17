@@ -102,4 +102,15 @@ public class CategoryController {
         categoryService.update(id, category);
         return "redirect:/categories";    }
 
+    /**
+     * Deletes existing Object
+     * @param id            Catefory Id
+     * @return              redirect to list view of all Categories
+     */
+    @GetMapping(path = "/category/delete/{id}")
+    public String deleteCategory(@PathVariable("id") long id) {
+        categoryService.delete(id);
+        return "redirect:/categories";
+    }
+
 }
