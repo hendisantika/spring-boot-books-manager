@@ -1,5 +1,6 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.model.Book;
 import com.hendisantika.model.Category;
 import com.hendisantika.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -58,5 +61,20 @@ public class CategoryController {
         Category category = categoryService.findById(id);
         model.addAttribute("category", category);
         return "categories/edit";
+    }
+
+    /**
+     * Shows Books by Category
+     * @param category_id        category_id
+     * @param model              contains a Category and its Books
+     * @return                   list view of books
+     */
+    @GetMapping("/category/books/{id}")
+    public String showBooksByCategory(@PathVariable("id") long category_id, Model model) {
+        Category category = categoryService.findById(category_id);
+        Set<Book> books = category.getBooks();
+        model.addAttribute("category", category);
+        model.addAttribute("books", books);
+        return "categories/showById";
     }
 }
