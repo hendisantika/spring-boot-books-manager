@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -43,5 +45,18 @@ public class CategoryController {
     public String saveNewCategory(Category category) {
         long id = categoryService.create(category);
         return "redirect:/categories";
+    }
+
+    /**
+     * Returns an Edit Form for an existing Category
+     * @param id        Id of Category
+     * @param model     contains Category Object
+     * @return          edit Form
+     */
+    @GetMapping("/category/{id}")
+    public String editCategoryForm(@PathVariable("id") long id, Model model) {
+        Category category = categoryService.findById(id);
+        model.addAttribute("category", category);
+        return "categories/edit";
     }
 }
