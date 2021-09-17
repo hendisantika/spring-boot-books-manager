@@ -106,4 +106,15 @@ public class BookController {
     public String updateBook(@PathVariable("id") long id, Book book) {
         bookService.update(id, book);
         return "redirect:/books";    }
+
+    /**
+     * deletes existing book from DB
+     * @param id        book Id
+     * @return          redirection to list view of all books
+     */
+    @GetMapping(path = "/book/delete/{id}")
+    public String deleteBook(@PathVariable("id") long id) {
+        bookService.delete(id);
+        return "redirect:/books";
+    }
 }
