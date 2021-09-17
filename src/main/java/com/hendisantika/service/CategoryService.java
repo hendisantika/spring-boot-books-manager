@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -33,5 +34,19 @@ public class CategoryService {
         return categorySet;
     }
 
+    /**
+     * finds a Category in DB by its ID
+     *
+     * @param catId Database ID of Category
+     * @return Category with ID = catId
+     */
+    public Category findById(Long catId) {
+        Optional<Category> categoryOptional = categoryRepository.findById(catId);
+
+        if (!categoryOptional.isPresent()) {
+            throw new RuntimeException("Category Not Found!");
+        }
+        return categoryOptional.get();
+    }
 
 }
