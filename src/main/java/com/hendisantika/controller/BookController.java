@@ -40,4 +40,17 @@ public class BookController {
         model.addAttribute("book", book);
         return "books/showById";
     }
+
+    /**
+     * New Book Form
+     * @param model     book object
+     * @return          template form for new book
+     */
+    @GetMapping( path = "/book/create")
+    public String newBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        Set<Category> categories = categoryService.getAll();
+        model.addAttribute("categories", categories);
+        return "books/new";
+    }
 }
