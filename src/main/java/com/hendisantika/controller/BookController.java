@@ -1,9 +1,14 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.model.Book;
 import com.hendisantika.service.BookService;
 import com.hendisantika.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +27,17 @@ public class BookController {
 
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * Displays a single Book
+     * @param id            book Id
+     * @param model         book object
+     * @return              template for displaying a single book
+     */
+    @GetMapping( path = "/book/show/{id}")
+    public String showSingleBook(@PathVariable("id") long id, Model model) {
+        Book book = bookService.findById(id);
+        model.addAttribute("book", book);
+        return "books/showById";
+    }
 }
