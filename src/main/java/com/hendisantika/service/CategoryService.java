@@ -57,4 +57,15 @@ public class CategoryService {
     public void delete(Long catId) {
         categoryRepository.deleteById(catId);
     }
+
+    /**
+     * creates and inserts a new Category in DB
+     *
+     * @param categoryDetails Category details from NEW Cat. FROM
+     * @return id of new Category
+     */
+    public Long create(Category categoryDetails) {
+        categoryRepository.save(categoryDetails);
+        return categoryDetails.getId();
+    }
 }
