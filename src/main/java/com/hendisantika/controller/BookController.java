@@ -95,4 +95,15 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAll());
         return "index";
     }
+
+    /**
+     * Saves book details from edit template for an existing book in DB
+     * @param id        book Id
+     * @param book      book details (of field values)
+     * @return          redirection to list view of all books
+     */
+    @PostMapping(path = "/book/{id}")
+    public String updateBook(@PathVariable("id") long id, Book book) {
+        bookService.update(id, book);
+        return "redirect:/books";    }
 }
