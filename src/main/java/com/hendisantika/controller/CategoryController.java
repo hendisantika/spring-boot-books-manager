@@ -77,4 +77,15 @@ public class CategoryController {
         model.addAttribute("books", books);
         return "categories/showById";
     }
+
+    /**
+     * List/Table view of all existing Categories in Database
+     * @param model         contains Categories from DB
+     * @return              list view
+     */
+    @GetMapping("/categories")
+    public String showAllCategories(Model model) {
+        model.addAttribute("categories", categoryService.getAll());
+        return "categories/list";
+    }
 }
