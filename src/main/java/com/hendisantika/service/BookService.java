@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -31,6 +32,21 @@ public class BookService {
         Set<Book> bookSet = new HashSet<>();
         bookRepository.findAll().iterator().forEachRemaining(bookSet::add);
         return bookSet;
+    }
+
+    /**
+     * finds a Book in DB by its ID
+     *
+     * @param bookId Database ID of Book
+     * @return Book with ID = bookId
+     */
+    public Book findById(Long bookId) {
+        Optional<Book> bookOptional = bookRepository.findById(bookId);
+
+        if (!bookOptional.isPresent()) {
+            throw new RuntimeException("Book Not Found!");
+        }
+        return bookOptional.get();
     }
 
 }
