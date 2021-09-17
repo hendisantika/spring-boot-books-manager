@@ -34,4 +34,14 @@ public class CategoryController {
         return "categories/new";
     }
 
+    /**
+     * Save the Details of the NewCategoryForm in DD
+     * @param category   contains field values
+     * @return           redirection to categories list
+     */
+    @PostMapping(path = "/category")
+    public String saveNewCategory(Category category) {
+        long id = categoryService.create(category);
+        return "redirect:/categories";
+    }
 }
