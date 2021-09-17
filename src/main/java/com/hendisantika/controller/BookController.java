@@ -83,4 +83,16 @@ public class BookController {
         model.addAttribute("book", book);
         return "books/edit";
     }
+
+    /**
+     * shows all existing books in DB as list
+     * @param model     book objects
+     * @return          template for list view
+     */
+    @GetMapping({"/books", "/"})
+    public String showAllBooks(Model model) {
+        model.addAttribute("books", bookService.getAll());
+        model.addAttribute("categories", categoryService.getAll());
+        return "index";
+    }
 }
