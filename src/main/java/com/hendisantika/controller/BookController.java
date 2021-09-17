@@ -1,6 +1,7 @@
 package com.hendisantika.controller;
 
 import com.hendisantika.model.Book;
+import com.hendisantika.model.Category;
 import com.hendisantika.service.BookService;
 import com.hendisantika.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -52,5 +56,16 @@ public class BookController {
         Set<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         return "books/new";
+    }
+
+    /**
+     * saves the details of "book/create" to DB
+     * @param book      field values
+     * @return          redirection to list view of all books
+     */
+    @PostMapping(path = "/book")
+    public String saveNewBook(Book book) {
+        long id = bookService.create(book);
+        return "redirect:/books";
     }
 }
