@@ -4,6 +4,7 @@ import com.hendisantika.model.Book;
 import com.hendisantika.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.Set;
  * Time: 05.59
  */
 @Service
+@Transactional
 public class BookService {
     @Autowired
     private BookRepository bookRepository;

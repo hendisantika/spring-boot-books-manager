@@ -69,3 +69,8 @@ VALUES (1000, '1000'),
        (1008, '1001'),
        (1009, '1004'),
        (1010, '1004');
+
+SELECT *
+FROM books;
+SELECT *
+FROM categories;

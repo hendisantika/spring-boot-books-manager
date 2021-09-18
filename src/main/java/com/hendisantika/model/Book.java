@@ -1,8 +1,5 @@
 package com.hendisantika.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,9 +20,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "books")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Book {
 
     @Id
@@ -54,4 +48,54 @@ public class Book {
     @Type(type = "org.hibernate.type.TextType")
     private String description;
 
+    public Book() {
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDateField() {
+        return dateField;
+    }
+
+    public void setDateField(Date dateField) {
+        this.dateField = dateField;
+    }
 }
