@@ -1,16 +1,16 @@
 package com.hendisantika.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 /**
@@ -24,8 +24,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "categories")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
     @Column(name = "cat_id")
@@ -37,10 +37,6 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private Set<Book> books;
-
-    public Category(@NotEmpty String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
